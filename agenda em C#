@@ -1,0 +1,79 @@
+using System;
+using System.Collections.Generic;
+
+namespace Agenda
+{
+    class Program
+    {
+        static List<string> contacts = new List<string>();
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Bem-vindo à Agenda!");
+
+            bool running = true;
+
+            while (running)
+            {
+                Console.WriteLine("\nSelecione uma opção:");
+                Console.WriteLine("1. Adicionar contato");
+                Console.WriteLine("2. Visualizar contatos");
+                Console.WriteLine("3. Sair");
+
+                string input = Console.ReadLine();
+
+                switch (input)
+                {
+                    case "1":
+                        AddContact();
+                        break;
+                    case "2":
+                        ViewContacts();
+                        break;
+                    case "3":
+                        running = false;
+                        break;
+                    default:
+                        Console.WriteLine("Opção inválida. Tente novamente.");
+                        break;
+                }
+            }
+
+            Console.WriteLine("Obrigado por usar a Agenda! Pressione qualquer tecla para sair.");
+            Console.ReadKey();
+        }
+
+        static void AddContact()
+        {
+            Console.WriteLine("\nDigite o nome do contato:");
+            string name = Console.ReadLine();
+
+            if (!string.IsNullOrWhiteSpace(name))
+            {
+                contacts.Add(name);
+                Console.WriteLine("Contato adicionado com sucesso!");
+            }
+            else
+            {
+                Console.WriteLine("Nome inválido. O contato não foi adicionado.");
+            }
+        }
+
+        static void ViewContacts()
+        {
+            if (contacts.Count == 0)
+            {
+                Console.WriteLine("\nA agenda está vazia. Adicione contatos para visualizá-los.");
+            }
+            else
+            {
+                Console.WriteLine("\nContatos na agenda:");
+
+                foreach (string contact in contacts)
+                {
+                    Console.WriteLine(contact);
+                }
+            }
+        }
+    }
+}
